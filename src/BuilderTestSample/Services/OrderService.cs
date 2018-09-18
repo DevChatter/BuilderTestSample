@@ -70,7 +70,7 @@ namespace BuilderTestSample.Services
         {
             order.Customer.OrderHistory.Add(order);
 
-            // TODO: update the customer's total purchases property
+            order.Customer.TotalPurchases += order.TotalAmount;
         }
     }
 }

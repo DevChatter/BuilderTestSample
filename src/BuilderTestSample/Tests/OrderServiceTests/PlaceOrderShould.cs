@@ -62,5 +62,21 @@ namespace BuilderTestSample.Tests.OrderServiceTests
             Assert.Contains(order, order.Customer.OrderHistory);
         }
 
+        [Fact]
+        public void AddOrderTotalToCustomerPurchases()
+        {
+            decimal orderAmount = 100m;
+            decimal totalPurchases = 400m;
+            var order = _orderBuilder
+                .WithTestValues()
+                .OrderAmount(orderAmount)
+                .BuildCustomer(cb => cb.WithTestValues().TotalPurchases(totalPurchases))
+                .Build();
+
+            _orderService.PlaceOrder(order);
+
+            Assert.Equal(orderAmount + totalPurchases, order.Customer.TotalPurchases);
+        }
+
     }
 }
