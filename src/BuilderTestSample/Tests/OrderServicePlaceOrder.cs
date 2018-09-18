@@ -1,4 +1,5 @@
 using BuilderTestSample.Exceptions;
+using BuilderTestSample.Model;
 using BuilderTestSample.Services;
 using BuilderTestSample.Tests.TestBuilders;
 using Xunit;
@@ -11,12 +12,23 @@ namespace BuilderTestSample.Tests
         private readonly OrderBuilder _orderBuilder = new OrderBuilder();
 
         [Fact]
-        public void ThrowsExceptionGivenOrderWithExistingId()
+        public void ThrowsException_GivenOrderWithExistingId()
         {
             var order = _orderBuilder
-                            .WithTestValues()
-                            .Id(123)
-                            .Build();
+                .WithTestValues()
+                .Id(123)
+                .Build();
+
+            Assert.Throws<InvalidOrderException>(() => _orderService.PlaceOrder(order));
+        }
+
+        [Fact]
+        public void ThrowsException_GivenOrderAmountOfZero()
+        {
+            var order = _orderBuilder
+                .WithTestValues()
+                .OrderAmount(0)
+                .Build();
 
             Assert.Throws<InvalidOrderException>(() => _orderService.PlaceOrder(order));
         }
