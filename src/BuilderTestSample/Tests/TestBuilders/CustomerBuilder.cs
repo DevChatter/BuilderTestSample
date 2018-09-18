@@ -1,5 +1,4 @@
-﻿using System;
-using BuilderTestSample.Model;
+﻿using BuilderTestSample.Model;
 
 namespace BuilderTestSample.Tests.TestBuilders
 {
@@ -13,6 +12,18 @@ namespace BuilderTestSample.Tests.TestBuilders
             return this;
         }
 
+        public CustomerBuilder FirstName(string firstName)
+        {
+            _customer.FirstName = firstName;
+            return this;
+        }
+
+        public CustomerBuilder LastName(string lastName)
+        {
+            _customer.LastName = lastName;
+            return this;
+        }
+
         public Customer Build()
         {
             Customer builtCustomer = _customer;
@@ -22,7 +33,12 @@ namespace BuilderTestSample.Tests.TestBuilders
 
         public CustomerBuilder WithTestValues(int id)
         {
-            _customer = new Customer(id);
+            _customer = new Customer(id)
+            {
+                HomeAddress = new Address(),
+                FirstName = "Bob",
+                LastName = "Smith"
+            };
             return this;
         }
     }
