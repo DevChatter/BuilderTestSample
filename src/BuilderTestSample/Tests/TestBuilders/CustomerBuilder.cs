@@ -7,6 +7,12 @@ namespace BuilderTestSample.Tests.TestBuilders
     {
         private Customer _customer;
 
+        public CustomerBuilder Address(Address address)
+        {
+            _customer.HomeAddress = address;
+            return this;
+        }
+
         public Customer Build()
         {
             return _customer;
