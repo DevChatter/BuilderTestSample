@@ -17,5 +17,17 @@ namespace BuilderTestSample.Tests.OrderServiceTests
 
             Assert.Throws<InvalidAddressException>(() => _orderService.PlaceOrder(order));
         }
+
+        [Fact]
+        public void GivenNoCity()
+        {
+            var order = _orderBuilder
+                .WithTestValues()
+                .BuildCustomer(cb => cb.WithTestValues()
+                    .BuildAddress(ab => ab.WithTestValues().City(null)))
+                .Build();
+
+            Assert.Throws<InvalidAddressException>(() => _orderService.PlaceOrder(order));
+        }
     }
 }

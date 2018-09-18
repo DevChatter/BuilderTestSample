@@ -25,5 +25,11 @@ namespace BuilderTestSample.Tests.TestBuilders
             _internalAddress.Street1 = street1;
             return this;
         }
+
+        public AddressBuilder City(string city)
+        {
+            _internalAddress.City = city;
+            return this;
+        }
     }
 }
