@@ -3,6 +3,7 @@ using Xunit;
 
 namespace BuilderTestSample.Tests.OrderServiceTests
 {
+
     public class PlaceOrderThrowsInsufficientCredit : BaseOrderServiceTests
     {
         [Fact]
