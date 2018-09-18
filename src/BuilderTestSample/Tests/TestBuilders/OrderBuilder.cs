@@ -17,7 +17,9 @@ namespace BuilderTestSample.Tests.TestBuilders
 
         public Order Build()
         {
-            return _order;
+            var builtOrder = _order;
+            _order = new Order();
+            return builtOrder;
         }
 
         public OrderBuilder WithTestValues()
