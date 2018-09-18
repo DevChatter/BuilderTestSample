@@ -3,9 +3,6 @@ using BuilderTestSample.Model;
 
 namespace BuilderTestSample.Tests.TestBuilders
 {
-    /// <summary>
-    /// Reference: https://ardalis.com/improve-tests-with-the-builder-pattern-for-test-data
-    /// </summary>
     public class OrderBuilder
     {
         private CustomerBuilder _customerBuilder = new CustomerBuilder();
@@ -23,16 +20,15 @@ namespace BuilderTestSample.Tests.TestBuilders
             return this;
         }
 
+        public OrderBuilder Customer(Customer customer)
+        {
+            _order.Customer = customer;
+            return this;
+        }
         public OrderBuilder BuildCustomer(Func<CustomerBuilder, CustomerBuilder> customerBuild)
         {
             _customerBuilder = customerBuild(_customerBuilder);
             _order.Customer = _customerBuilder.Build();
-            return this;
-        }
-
-        public OrderBuilder Customer(Customer customer)
-        {
-            _order.Customer = customer;
             return this;
         }
 
