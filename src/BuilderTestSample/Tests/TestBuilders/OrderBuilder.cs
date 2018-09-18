@@ -39,7 +39,7 @@ namespace BuilderTestSample.Tests.TestBuilders
         {
             _order.TotalAmount = 100m;
 
-            _order.Customer = _customerBuilder.WithTestValues(1)
+            _order.Customer = _customerBuilder.WithTestValues()
                 .Address(new Address())
                 .Build();
 

@@ -39,9 +39,9 @@ namespace BuilderTestSample.Tests.TestBuilders
             return builtCustomer;
         }
 
-        public CustomerBuilder WithTestValues(int id)
+        public CustomerBuilder WithTestValues()
         {
-            _internalCustomer = new Customer(id)
+            _internalCustomer = new Customer(100)
             {
                 HomeAddress = new Address(),
                 FirstName = "Bob",

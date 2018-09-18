@@ -12,7 +12,7 @@ namespace BuilderTestSample.Tests
         {
             var order = _orderBuilder
                 .WithTestValues()
-                .Customer(_customerBuilder.WithTestValues(0).Build())
+                .Customer(_customerBuilder.WithTestValues().Id(0).Build())
                 .Build();
 
             Assert.Throws<InvalidCustomerException>(() => _orderService.PlaceOrder(order));
@@ -22,7 +22,7 @@ namespace BuilderTestSample.Tests
         public void ThrowsException_GivenCustomerWithoutAddress()
         {
             Customer customer = _customerBuilder
-                .WithTestValues(10)
+                .WithTestValues()
                 .Address(null)
                 .Build();
             var order = _orderBuilder.WithTestValues().Customer(customer).Build();
@@ -34,12 +34,24 @@ namespace BuilderTestSample.Tests
         public void ThrowsException_GivenCustomerWithoutFullName()
         {
             Customer customer = _customerBuilder
-                .WithTestValues(10)
+                .WithTestValues()
                 .FirstName(null).LastName(null)
                 .Build();
             var order = _orderBuilder.WithTestValues().Customer(customer).Build();
 
             Assert.Throws<InvalidCustomerException>(() => _orderService.PlaceOrder(order));
         }
+
+        //[Fact]
+        //public void ThrowsException_GivenCustomerWithTotalZero()
+        //{
+        //    Customer customer = _customerBuilder
+        //        .WithTestValues()
+        //        .Total(0)
+        //        .Build();
+        //    var order = _orderBuilder.WithTestValues().Customer(customer).Build();
+
+        //    Assert.Throws<InvalidCustomerException>(() => _orderService.PlaceOrder(order));
+        //}
     }
 }
