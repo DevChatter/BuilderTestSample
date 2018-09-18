@@ -1,28 +1,10 @@
-﻿using System.Reflection.Metadata.Ecma335;
-using BuilderTestSample.Model;
+﻿using BuilderTestSample.Model;
 
 namespace BuilderTestSample.Tests.TestBuilders
 {
     public class AddressBuilder
     {
         private Address _internalAddress = new Address();
-
-        public Address Build()
-        {
-            var builtAddress = _internalAddress;
-            _internalAddress = new Address();
-            return builtAddress;
-        }
-
-        public AddressBuilder WithTestValues()
-        {
-            _internalAddress.Street1 = "123 Fake St.";
-            _internalAddress.City = "Cleveland";
-            _internalAddress.State = "Ohio";
-            _internalAddress.PostalCode = "44111";
-            _internalAddress.Country = "USA";
-            return this;
-        }
 
         public AddressBuilder Street1(string street1)
         {
@@ -53,5 +35,23 @@ namespace BuilderTestSample.Tests.TestBuilders
             _internalAddress.Country = country;
             return this;
         }
+
+        public Address Build()
+        {
+            var builtAddress = _internalAddress;
+            _internalAddress = new Address();
+            return builtAddress;
+        }
+
+        public AddressBuilder WithTestValues()
+        {
+            _internalAddress.Street1 = "123 Fake St.";
+            _internalAddress.City = "Cleveland";
+            _internalAddress.State = "Ohio";
+            _internalAddress.PostalCode = "44111";
+            _internalAddress.Country = "USA";
+            return this;
+        }
+
     }
 }
