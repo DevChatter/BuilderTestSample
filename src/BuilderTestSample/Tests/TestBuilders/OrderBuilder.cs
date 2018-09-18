@@ -16,6 +16,18 @@ namespace BuilderTestSample.Tests.TestBuilders
             return this;
         }
 
+        public OrderBuilder OrderAmount(decimal amount)
+        {
+            _order.TotalAmount = amount;
+            return this;
+        }
+
+        public OrderBuilder Customer(Customer customer)
+        {
+            _order.Customer = customer;
+            return this;
+        }
+
         public Order Build()
         {
             var builtOrder = _order;
@@ -31,18 +43,6 @@ namespace BuilderTestSample.Tests.TestBuilders
                 .Address(new Address())
                 .Build();
 
-            return this;
-        }
-
-        public OrderBuilder OrderAmount(decimal amount)
-        {
-            _order.TotalAmount = amount;
-            return this;
-        }
-
-        public OrderBuilder Customer(Customer customer)
-        {
-            _order.Customer = customer;
             return this;
         }
     }
