@@ -34,15 +34,7 @@ namespace BuilderTestSample.Tests.TestBuilders
 
         public Customer Build()
         {
-            Customer builtCustomer = new Customer(_id)
-            {
-                CreditRating = _internalCustomer.CreditRating,
-                HomeAddress = _internalCustomer.HomeAddress,
-                FirstName = _internalCustomer.FirstName,
-                LastName = _internalCustomer.LastName,
-                OrderHistory = _internalCustomer.OrderHistory,
-                TotalPurchases = _internalCustomer.TotalPurchases
-            };
+            Customer builtCustomer = _internalCustomer.WithId(_id);
             _internalCustomer = new Customer(0);
             return builtCustomer;
         }

@@ -17,5 +17,18 @@ namespace BuilderTestSample.Model
         public decimal TotalPurchases { get; set; }
 
         public List<Order> OrderHistory { get; set; } = new List<Order>();
+
+        public Customer WithId(int id)
+        {
+            return new Customer(id)
+            {
+                CreditRating = CreditRating,
+                HomeAddress = HomeAddress,
+                FirstName = FirstName,
+                LastName = LastName,
+                OrderHistory = OrderHistory,
+                TotalPurchases = TotalPurchases
+            };
+        }
     }
 }
