@@ -49,5 +49,18 @@ namespace BuilderTestSample.Tests.OrderServiceTests
 
             Assert.False(order.IsExpedited);
         }
+
+        [Fact]
+        public void AddOrderToOrderHistory()
+        {
+            var order = _orderBuilder
+                .WithTestValues()
+                .Build();
+
+            _orderService.PlaceOrder(order);
+
+            Assert.Contains(order, order.Customer.OrderHistory);
+        }
+
     }
 }
