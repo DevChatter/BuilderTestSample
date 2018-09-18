@@ -26,6 +26,12 @@ namespace BuilderTestSample.Tests.TestBuilders
             return this;
         }
 
+        public CustomerBuilder TotalPurchases(decimal totalPurchases)
+        {
+            _internalCustomer.TotalPurchases = totalPurchases;
+            return this;
+        }
+
         public CustomerBuilder Id(int id)
         {
             _id = id;
@@ -41,6 +47,7 @@ namespace BuilderTestSample.Tests.TestBuilders
 
         public CustomerBuilder WithTestValues()
         {
+            _id = 100;
             _internalCustomer = new Customer(100)
             {
                 HomeAddress = new Address(),
