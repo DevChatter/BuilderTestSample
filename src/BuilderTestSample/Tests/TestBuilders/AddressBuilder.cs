@@ -19,6 +19,7 @@ namespace BuilderTestSample.Tests.TestBuilders
             _internalAddress.Street1 = "123 Fake St.";
             _internalAddress.City = "Cleveland";
             _internalAddress.State = "Ohio";
+            _internalAddress.PostalCode = "44111";
             return this;
         }
 
@@ -37,6 +38,12 @@ namespace BuilderTestSample.Tests.TestBuilders
         public AddressBuilder State(string state)
         {
             _internalAddress.State = state;
+            return this;
+        }
+
+        public AddressBuilder PostalCode(string postalCode)
+        {
+            _internalAddress.PostalCode = postalCode;
             return this;
         }
     }
