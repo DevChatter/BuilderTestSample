@@ -1,9 +1,8 @@
 using BuilderTestSample.Exceptions;
 using BuilderTestSample.Model;
-using BuilderTestSample.Tests.OrderServiceTests;
 using Xunit;
 
-namespace BuilderTestSample.Tests
+namespace BuilderTestSample.Tests.OrderServiceTests
 {
     public class PlaceOrderThrowsInvalidCustomer : BaseOrderServiceTests
     {
@@ -42,16 +41,16 @@ namespace BuilderTestSample.Tests
             Assert.Throws<InvalidCustomerException>(() => _orderService.PlaceOrder(order));
         }
 
-        //[Fact]
-        //public void ThrowsException_GivenCustomerWithTotalZero()
-        //{
-        //    Customer customer = _customerBuilder
-        //        .WithTestValues()
-        //        .Total(0)
-        //        .Build();
-        //    var order = _orderBuilder.WithTestValues().Customer(customer).Build();
+        [Fact]
+        public void ThrowsException_GivenCustomerWithNegativeTotal()
+        {
+            Customer customer = _customerBuilder
+                .WithTestValues()
+                .TotalPurchases(-100m)
+                .Build();
+            var order = _orderBuilder.WithTestValues().Customer(customer).Build();
 
-        //    Assert.Throws<InvalidCustomerException>(() => _orderService.PlaceOrder(order));
-        //}
+            Assert.Throws<InvalidCustomerException>(() => _orderService.PlaceOrder(order));
+        }
     }
 }
