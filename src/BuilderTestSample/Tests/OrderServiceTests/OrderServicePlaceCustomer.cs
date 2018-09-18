@@ -5,7 +5,7 @@ using Xunit;
 
 namespace BuilderTestSample.Tests
 {
-    public class OrderServicePlaceOrder : BaseOrderServiceTests
+    public class PlaceOrderThrowsInvalidCustomer : BaseOrderServiceTests
     {
         [Fact]
         public void ThrowsException_GivenCustomerWithIdZero()
