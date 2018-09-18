@@ -10,13 +10,6 @@ namespace BuilderTestSample.Tests.TestBuilders
         private Customer _internalCustomer = new Customer(0);
         private int _id;
 
-        public CustomerBuilder BuildAddress(Func<AddressBuilder, AddressBuilder> addressBuild)
-        {
-            _addressBuilder = addressBuild(_addressBuilder);
-            _internalCustomer.HomeAddress = _addressBuilder.Build();
-            return this;
-        }
-
         public CustomerBuilder FirstName(string firstName)
         {
             _internalCustomer.FirstName = firstName;
@@ -35,9 +28,28 @@ namespace BuilderTestSample.Tests.TestBuilders
             return this;
         }
 
+        public CustomerBuilder CreditRating(int creditRating)
+        {
+            _internalCustomer.CreditRating = creditRating;
+            return this;
+        }
+
         public CustomerBuilder Id(int id)
         {
             _id = id;
+            return this;
+        }
+
+        public CustomerBuilder Address(Address address)
+        {
+            _internalCustomer.HomeAddress = address;
+            return this;
+        }
+
+        public CustomerBuilder BuildAddress(Func<AddressBuilder, AddressBuilder> addressBuild)
+        {
+            _addressBuilder = addressBuild(_addressBuilder);
+            _internalCustomer.HomeAddress = _addressBuilder.Build();
             return this;
         }
 
@@ -60,18 +72,6 @@ namespace BuilderTestSample.Tests.TestBuilders
                 OrderHistory = new List<Order>(),
                 TotalPurchases = 13.37m
             };
-            return this;
-        }
-
-        public CustomerBuilder Address(Address address)
-        {
-            _internalCustomer.HomeAddress = address;
-            return this;
-        }
-
-        public CustomerBuilder CreditRating(int creditRating)
-        {
-            _internalCustomer.CreditRating = creditRating;
             return this;
         }
     }
