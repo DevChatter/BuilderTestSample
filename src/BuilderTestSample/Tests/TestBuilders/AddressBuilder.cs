@@ -20,6 +20,7 @@ namespace BuilderTestSample.Tests.TestBuilders
             _internalAddress.City = "Cleveland";
             _internalAddress.State = "Ohio";
             _internalAddress.PostalCode = "44111";
+            _internalAddress.Country = "USA";
             return this;
         }
 
@@ -44,6 +45,12 @@ namespace BuilderTestSample.Tests.TestBuilders
         public AddressBuilder PostalCode(string postalCode)
         {
             _internalAddress.PostalCode = postalCode;
+            return this;
+        }
+
+        public AddressBuilder Country(string country)
+        {
+            _internalAddress.Country = country;
             return this;
         }
     }

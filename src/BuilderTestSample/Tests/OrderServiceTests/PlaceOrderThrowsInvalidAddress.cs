@@ -53,5 +53,17 @@ namespace BuilderTestSample.Tests.OrderServiceTests
 
             Assert.Throws<InvalidAddressException>(() => _orderService.PlaceOrder(order));
         }
+
+        [Fact]
+        public void GivenNoCountry()
+        {
+            var order = _orderBuilder
+                .WithTestValues()
+                .BuildCustomer(cb => cb.WithTestValues()
+                    .BuildAddress(ab => ab.WithTestValues().Country(null)))
+                .Build();
+
+            Assert.Throws<InvalidAddressException>(() => _orderService.PlaceOrder(order));
+        }
     }
 }
