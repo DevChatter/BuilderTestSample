@@ -15,7 +15,9 @@ namespace BuilderTestSample.Tests.TestBuilders
 
         public Customer Build()
         {
-            return _customer;
+            Customer builtCustomer = _customer;
+            _customer = new Customer(0);
+            return builtCustomer;
         }
 
         public CustomerBuilder WithTestValues(int id)
