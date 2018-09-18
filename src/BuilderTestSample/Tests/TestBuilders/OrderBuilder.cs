@@ -36,5 +36,11 @@ namespace BuilderTestSample.Tests.TestBuilders
             _order.TotalAmount = amount;
             return this;
         }
+
+        public OrderBuilder Customer(Customer customer)
+        {
+            _order.Customer = customer;
+            return this;
+        }
     }
 }
