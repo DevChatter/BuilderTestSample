@@ -1,16 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BuilderTestSample.Model;
 
 namespace BuilderTestSample.Tests.TestBuilders
 {
     public class CustomerBuilder
     {
+        private AddressBuilder _addressBuilder = new AddressBuilder();
         private Customer _internalCustomer = new Customer(0);
         private int _id;
 
-        public CustomerBuilder Address(Address address)
+        public CustomerBuilder BuildAddress(Func<AddressBuilder, AddressBuilder> addressBuild)
         {
-            _internalCustomer.HomeAddress = address;
+            _addressBuilder = addressBuild(_addressBuilder);
+            _internalCustomer.HomeAddress = _addressBuilder.Build();
             return this;
         }
 
@@ -40,7 +43,7 @@ namespace BuilderTestSample.Tests.TestBuilders
 
         public Customer Build()
         {
-            Customer builtCustomer = _internalCustomer.WithId(_id);
+            Customer builtCustomer = _internalCustomer?.WithId(_id);
             _internalCustomer = new Customer(0);
             return builtCustomer;
         }
@@ -57,6 +60,12 @@ namespace BuilderTestSample.Tests.TestBuilders
                 OrderHistory = new List<Order>(),
                 TotalPurchases = 13.37m
             };
+            return this;
+        }
+
+        public CustomerBuilder Address(Address address)
+        {
+            _internalCustomer.HomeAddress = address;
             return this;
         }
     }
